@@ -32,14 +32,14 @@ The notebooks are designed to run on **Google Colab**. You will need the followi
 
 ```
 Invoice_Agent/
-├── invoic_agent.ipynb      # Main notebook: full extraction → agent pipeline
+├── invoice_agent.ipynb     # Main notebook: full extraction → agent pipeline
 ├── vector_storage.ipynb    # Vector storage experiments
 ├── *.pdf                   # Sample invoice documents
 ```
 
 ## Usage
 
-Open `invoic_agent.ipynb` in Google Colab, configure your API keys, and run all cells. The agent can then answer questions like:
+Open `invoice_agent.ipynb` in Google Colab, configure your API keys, and run all cells. The agent can then answer questions like:
 
 ```
 "What is the total amount on invoice RE-202659666?"
