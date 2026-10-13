@@ -36,7 +36,7 @@ Set these environment variables locally (or as Space secrets on Hugging Face):
 
 ## Usage
 
-Ingest all PDFs in the current directory into Qdrant:
+Ingest all PDFs in the local `invoices/` folder into Qdrant:
 
 ```bash
 uv run python vector_storage.py
@@ -69,12 +69,12 @@ Invoice_Agent/
 ├── vector_storage.py       # PDF extraction, chunking, embeddings, and upsert
 ├── invoice_agent.ipynb     # Original exploratory notebook
 ├── vector_storage.ipynb    # Original exploratory notebook
-├── *.pdf                   # Sample invoice documents
+├── invoices/               # Local invoice PDFs (gitignored, not in this repo)
 ```
 
 The original notebooks remain useful for Colab exploration, but they are no longer required to run the project.
 
-Drop any vendor's PDF into the folder (prefer filenames without spaces). Ingestion auto-discovers `*.pdf` files and extracts vendor-agnostic metadata on every chunk: `vendor_name`, `invoice_number`, `invoice_date`, and `source`.
+Drop any vendor's PDF into `invoices/` (prefer filenames without spaces). That folder is listed in `.gitignore`, so invoice files stay on your machine. Ingestion auto-discovers `invoices/*.pdf` and extracts vendor-agnostic metadata on every chunk: `vendor_name`, `invoice_number`, `invoice_date`, and `source`.
 
 Each invoice produces:
 - `page_text` chunks for general Q&A

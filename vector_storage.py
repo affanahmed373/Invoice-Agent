@@ -192,5 +192,8 @@ def ingest_pdfs(pdf_paths: list[str | Path], vendor_overrides: dict[str, str] | 
 
 
 if __name__ == "__main__":
-    paths = sorted(Path.cwd().glob("*.pdf"))
+    pdf_dir = Path(__file__).resolve().parent / "invoices"
+    paths = sorted(pdf_dir.glob("*.pdf"))
+    if not paths:
+        raise SystemExit(f"No PDFs found in {pdf_dir}. Put invoice files there; that folder is not committed.")
     print(f"Ingested {ingest_pdfs(paths)} chunks into {COLLECTION_NAME}.")
