@@ -845,7 +845,7 @@ wheels = [
 ]
 
 [[package]]
-name = "invoice-agent"
+name = "spice-shop-invoice-agent"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

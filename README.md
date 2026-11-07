@@ -1,6 +1,22 @@
-# Invoice Agent
+# Spice Shop Invoice Agent
 
-AI-powered invoice analysis agent that extracts text from PDF invoices, stores embeddings in a vector database, and answers natural-language questions about the invoices.
+A RAG agent built as volunteer work for a real Pakistani spice and grocery shop. The shop buys from several suppliers, and the bills pile up as PDFs. The owner adds those bills to a vector store and asks questions in plain language, such as which supplier is cheapest for a product, instead of comparing bills by hand.
+
+The agent extracts text and line items from each PDF bill, stores them in Qdrant, and answers with the vendor, invoice number, product and unit price it used.
+
+## What the shop asks
+
+```
+"Which vendor has the cheaper price for PG Tips tea bags?"
+"Compare atta prices across vendors."
+"What is the total amount on invoice RE-202659666?"
+```
+
+Real bills are never committed. The `invoices/` folder is gitignored, so the shop's PDFs stay on the local machine.
+
+## Current limits
+
+Prices and totals are answered from retrieved line-item chunks, so the agent compares what the vector search returns rather than querying every bill. Exact totals over a period ("how much did we spend in March?") need the line items in a structured table, which is the next planned step.
 
 ## Tech Stack
 
@@ -63,7 +79,7 @@ For a public demo, avoid committing invoice PDFs containing personal or commerci
 ## Project Layout
 
 ```
-Invoice_Agent/
+spice-shop-invoice-agent/
 ├── app.py                  # Hugging Face Spaces / Gradio entrypoint
 ├── invoice_agent.py        # Retrieval tools and Gemini agent
 ├── vector_storage.py       # PDF extraction, chunking, embeddings, and upsert
@@ -81,11 +97,3 @@ Each invoice produces:
 - `line_item` chunks (from tables when available, otherwise text heuristics) for product/price comparison
 
 Vendor names come from legal-entity patterns, supplier labels, or email/website domains—not from a hardcoded vendor list. If a PDF has no usable vendor text, set an optional entry in `VENDOR_OVERRIDES`.
-
-Example questions:
-
-```
-"What is the total amount on invoice RE-202659666?"
-"Which vendor has the cheaper price for PG Tips tea bags?"
-"Compare atta prices across vendors."
-```

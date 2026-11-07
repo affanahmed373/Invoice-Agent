@@ -1,7 +1,7 @@
 [project]
-name = "invoice-agent"
+name = "spice-shop-invoice-agent"
 version = "0.1.0"
-description = "Add your description here"
+description = "RAG agent over supplier bills for a Pakistani spice shop"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
